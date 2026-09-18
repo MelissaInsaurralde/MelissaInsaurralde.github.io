@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Melissa Insaurralde</title>
- 
+
   <!-- Tipografía Inter desde Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
- 
+
   <style>
     /* ---------- Colores (editá acá) ---------- */
     :root {
@@ -18,12 +18,12 @@
       --texto-suave: #a8a8b3;
       --degradado: linear-gradient(135deg, #6366f1, #a855f7); /* GitHub */
     }
- 
+
     /* ---------- Base ---------- */
     * {
       box-sizing: border-box;
     }
- 
+
     body {
       margin: 0;
       background: var(--fondo);
@@ -32,25 +32,25 @@
       font-size: 18px;
       line-height: 1.7;
     }
- 
+
     .pagina {
       max-width: 620px;
       margin: 0 auto;
       padding: 64px 20px 72px;
     }
- 
+
     /* ---------- Arriba: foto, nombre y lo que hago ---------- */
     .encabezado {
       text-align: center;
     }
- 
+
     /* Portafotos: Doble marco */
     img.foto {
       border-radius: 50%;
       outline: 2px solid #881280;
       outline-offset: 6px;
     }
- 
+
     /* Tamaño de la foto (cuadrada para que el círculo salga perfecto) */
     .foto {
       display: block;
@@ -59,7 +59,7 @@
       object-fit: cover;
       margin: 0 auto 36px;
     }
- 
+
     .nombre {
       margin: 0;
       font-size: 48px;               /* Substack */
@@ -68,29 +68,168 @@
       letter-spacing: -0.02em;
       overflow-wrap: break-word;
     }
- 
+
     .ocupacion {
       margin: 14px 0 0;
       font-size: 20px;
       font-weight: 600;
       color: var(--texto-suave);
     }
- 
+
     /* ---------- Sobre mí ---------- */
     .sobre-mi {
       margin-top: 48px;
     }
- 
+
     .sobre-mi p {
       margin: 0 0 1.2em;
     }
- 
+
+    /* ---------- Portafolio: dashboard de ejemplo ---------- */
+    .portafolio {
+      margin-top: 56px;
+    }
+
+    .portafolio h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .portafolio-intro {
+      margin: 8px 0 24px;
+      font-size: 16px;
+      color: var(--texto-suave);
+    }
+
+    .dashboard {
+      padding: 20px;
+      background: #1b1b1f;
+      border: 1px solid #2a2a31;
+      border-radius: 18px;           /* Apple Store */
+    }
+
+    .dashboard-titulo {
+      margin: 0 0 16px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* Los 4 números grandes */
+    .indicadores {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 0 0 28px;
+    }
+
+    .indicador {
+      padding: 14px 16px;
+      background: var(--fondo);
+      border-radius: 12px;
+    }
+
+    .indicador dt {
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--texto-suave);
+    }
+
+    .indicador dd {
+      margin: 2px 0 0;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Gráfico de barras por mes */
+    .grafico-titulo {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .barras {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .barras li {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--texto-suave);
+    }
+
+    .columna {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      height: 120px;
+      margin-bottom: 6px;
+    }
+
+    .barra {
+      width: 100%;
+      height: var(--alto);
+      background: var(--degradado);  /* GitHub */
+      border-radius: 8px 8px 0 0;
+    }
+
+    .barras .valor {
+      font-weight: 600;
+      color: var(--texto);
+    }
+
+    /* Ventas por categoría */
+    .categorias {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .categorias li {
+      margin-bottom: 14px;
+    }
+
+    .categorias li:last-child {
+      margin-bottom: 0;
+    }
+
+    .categoria-fila {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .pista {
+      height: 10px;
+      background: #2a2a31;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .relleno {
+      width: var(--ancho);
+      height: 100%;
+      background: var(--degradado);  /* GitHub */
+    }
+
     /* ---------- Abajo: contacto ---------- */
     .contacto {
       margin-top: 48px;
       text-align: center;
     }
- 
+
     .boton-contacto {
       display: inline-block;
       padding: 14px 28px;
@@ -102,16 +241,16 @@
       text-decoration: none;
       overflow-wrap: anywhere;
     }
- 
+
     .boton-contacto:hover {
       filter: brightness(1.1);
     }
- 
+
     .boton-contacto:focus-visible {
       outline: 3px solid #ffffff;
       outline-offset: 4px;
     }
- 
+
     /* ---------- Celular ---------- */
     @media (max-width: 480px) {
       body {
@@ -120,19 +259,25 @@
       .pagina {
         padding-top: 48px;
       }
+      .dashboard {
+        padding: 16px;
+      }
+      .indicador dd {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
- 
+
 <body>
   <main class="pagina">
- 
+
     <header class="encabezado">
       <img class="foto" src="Melissa Insaurralde.jpg.png" alt="Foto de Melissa Insaurralde">
       <h1 class="nombre">Melissa Insaurralde</h1>
       <p class="ocupacion">Estudiante de Negocios Inteligentes e Innovación</p>
     </header>
- 
+
     <section class="sobre-mi">
       <p>
         Hola, soy Melissa. Estudio Negocios Inteligentes e Innovación, una carrera
@@ -148,11 +293,92 @@
         o simplemente querés conversar, escribime.
       </p>
     </section>
- 
+
+    <section class="portafolio">
+      <h2>Mi portafolio</h2>
+      <p class="portafolio-intro">
+        Un ejemplo de dashboard de mi portafolio. Los datos son de una tienda ficticia.
+      </p>
+
+      <div class="dashboard">
+        <h3 class="dashboard-titulo">Tienda online: primer semestre</h3>
+
+        <!-- Números principales (editá los valores acá) -->
+        <dl class="indicadores">
+          <div class="indicador">
+            <dt>Ventas totales</dt>
+            <dd>$48.200</dd>
+          </div>
+          <div class="indicador">
+            <dt>Pedidos</dt>
+            <dd>1.240</dd>
+          </div>
+          <div class="indicador">
+            <dt>Ticket promedio</dt>
+            <dd>$38,90</dd>
+          </div>
+          <div class="indicador">
+            <dt>Clientes nuevos</dt>
+            <dd>312</dd>
+          </div>
+        </dl>
+
+        <!-- Barras por mes: --alto es la altura de cada barra (100% = el mes más alto) -->
+        <h4 class="grafico-titulo">Ventas por mes (en miles de $)</h4>
+        <ul class="barras">
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 58%;"></div></div>
+            <span class="mes">Ene</span><span class="valor">6,1</span>
+          </li>
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 64%;"></div></div>
+            <span class="mes">Feb</span><span class="valor">6,8</span>
+          </li>
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 70%;"></div></div>
+            <span class="mes">Mar</span><span class="valor">7,4</span>
+          </li>
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 78%;"></div></div>
+            <span class="mes">Abr</span><span class="valor">8,3</span>
+          </li>
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 85%;"></div></div>
+            <span class="mes">May</span><span class="valor">9,0</span>
+          </li>
+          <li>
+            <div class="columna"><div class="barra" style="--alto: 100%;"></div></div>
+            <span class="mes">Jun</span><span class="valor">10,6</span>
+          </li>
+        </ul>
+
+        <!-- Categorías: --ancho es el porcentaje de cada una -->
+        <h4 class="grafico-titulo">Ventas por categoría</h4>
+        <ul class="categorias">
+          <li>
+            <div class="categoria-fila"><span>Indumentaria</span><span>42%</span></div>
+            <div class="pista"><div class="relleno" style="--ancho: 42%;"></div></div>
+          </li>
+          <li>
+            <div class="categoria-fila"><span>Accesorios</span><span>27%</span></div>
+            <div class="pista"><div class="relleno" style="--ancho: 27%;"></div></div>
+          </li>
+          <li>
+            <div class="categoria-fila"><span>Calzado</span><span>19%</span></div>
+            <div class="pista"><div class="relleno" style="--ancho: 19%;"></div></div>
+          </li>
+          <li>
+            <div class="categoria-fila"><span>Otros</span><span>12%</span></div>
+            <div class="pista"><div class="relleno" style="--ancho: 12%;"></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <footer class="contacto">
       <a class="boton-contacto" href="mailto:melissainsaurraldet@gmail.com">melissainsaurraldet@gmail.com</a>
     </footer>
- 
+
   </main>
 </body>
 </html>
