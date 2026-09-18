@@ -142,6 +142,7 @@
       font-size: 26px;
       font-weight: 700;
       line-height: 1.2;
+      font-variant-numeric: tabular-nums;
     }
 
     /* Gráfico de barras por mes */
@@ -222,6 +223,29 @@
       width: var(--ancho);
       height: 100%;
       background: var(--degradado);  /* GitHub */
+    }
+
+    /* ---------- Animación del dashboard ----------
+       Solo se activa si el JavaScript funciona (clase "js") y si la persona
+       no pidió menos movimiento. Sin JavaScript, todo se ve completo. */
+    .js .barra {
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .js .relleno {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .js .dashboard.visible .barra {
+      transform: scaleY(1);
+    }
+
+    .js .dashboard.visible .relleno {
+      transform: scaleX(1);
     }
 
     /* ---------- Abajo: contacto ---------- */
@@ -307,19 +331,19 @@
         <dl class="indicadores">
           <div class="indicador">
             <dt>Ventas totales</dt>
-            <dd>$48.200</dd>
+            <dd data-valor="48200" data-prefijo="$" data-decimales="0">$48.200</dd>
           </div>
           <div class="indicador">
             <dt>Pedidos</dt>
-            <dd>1.240</dd>
+            <dd data-valor="1240" data-prefijo="" data-decimales="0">1.240</dd>
           </div>
           <div class="indicador">
             <dt>Ticket promedio</dt>
-            <dd>$38,90</dd>
+            <dd data-valor="38.9" data-prefijo="$" data-decimales="2">$38,90</dd>
           </div>
           <div class="indicador">
             <dt>Clientes nuevos</dt>
-            <dd>312</dd>
+            <dd data-valor="312" data-prefijo="" data-decimales="0">312</dd>
           </div>
         </dl>
 
@@ -380,5 +404,72 @@
     </footer>
 
   </main>
+
+  <!-- Animación del dashboard (JavaScript dentro del mismo archivo) -->
+  <script>
+    (function () {
+      var dashboard = document.querySelector(".dashboard");
+      if (!dashboard) return;
+
+      // Si la persona pidió menos movimiento, o el navegador es muy viejo, no animamos
+      var pidioMenosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (pidioMenosMovimiento || !("IntersectionObserver" in window)) return;
+
+      var barras = dashboard.querySelectorAll(".barra");
+      var rellenos = dashboard.querySelectorAll(".relleno");
+      var numeros = dashboard.querySelectorAll("[data-valor]");
+
+      // Cada barra arranca un poquito después que la anterior
+      barras.forEach(function (barra, i) {
+        barra.style.transitionDelay = i * 90 + "ms";
+      });
+      rellenos.forEach(function (relleno, i) {
+        relleno.style.transitionDelay = i * 120 + "ms";
+      });
+
+      // 1240 -> "1.240"   38.9 (2 decimales) -> "38,90"
+      function formatear(numero, decimales) {
+        var partes = numero.toFixed(decimales).split(".");
+        partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return partes.join(",");
+      }
+
+      // Cuenta desde 0 hasta el valor final en 1,2 segundos
+      function contar(elemento) {
+        var final = parseFloat(elemento.dataset.valor);
+        var prefijo = elemento.dataset.prefijo;
+        var decimales = parseInt(elemento.dataset.decimales, 10);
+        var duracion = 1200;
+        var inicio = null;
+
+        function paso(ahora) {
+          if (inicio === null) inicio = ahora;
+          var avance = Math.min((ahora - inicio) / duracion, 1);
+          var suave = 1 - Math.pow(1 - avance, 3);
+          elemento.textContent = prefijo + formatear(final * suave, decimales);
+          if (avance < 1) requestAnimationFrame(paso);
+        }
+        requestAnimationFrame(paso);
+      }
+
+      // Cuando el dashboard entra en pantalla, arranca todo (una sola vez)
+      var observador = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) return;
+          dashboard.classList.add("visible");
+          numeros.forEach(contar);
+          observador.unobserve(dashboard);
+        });
+      }, { threshold: 0.25 });
+
+      // Los números empiezan en 0 y la clase "js" esconde las barras hasta que empiece
+      numeros.forEach(function (elemento) {
+        var decimales = parseInt(elemento.dataset.decimales, 10);
+        elemento.textContent = elemento.dataset.prefijo + formatear(0, decimales);
+      });
+      document.documentElement.classList.add("js");
+      observador.observe(dashboard);
+    })();
+  </script>
 </body>
 </html>
