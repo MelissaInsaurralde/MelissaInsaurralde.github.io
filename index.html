@@ -1,1 +1,158 @@
-<h1> Pagina web en construcción </h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Melissa Insaurralde</title>
+ 
+  <!-- Tipografía Inter desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+ 
+  <style>
+    /* ---------- Colores (editá acá) ---------- */
+    :root {
+      --fondo: #121212;                 /* La Nación */
+      --texto: #ececec;
+      --texto-suave: #a8a8b3;
+      --degradado: linear-gradient(135deg, #6366f1, #a855f7); /* GitHub */
+    }
+ 
+    /* ---------- Base ---------- */
+    * {
+      box-sizing: border-box;
+    }
+ 
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: "Inter", sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+ 
+    .pagina {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 64px 20px 72px;
+    }
+ 
+    /* ---------- Arriba: foto, nombre y lo que hago ---------- */
+    .encabezado {
+      text-align: center;
+    }
+ 
+    /* Portafotos: Doble marco */
+    img.foto {
+      border-radius: 50%;
+      outline: 2px solid #881280;
+      outline-offset: 6px;
+    }
+ 
+    /* Tamaño de la foto (cuadrada para que el círculo salga perfecto) */
+    .foto {
+      display: block;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+    }
+ 
+    .nombre {
+      margin: 0;
+      font-size: 48px;               /* Substack */
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      overflow-wrap: break-word;
+    }
+ 
+    .ocupacion {
+      margin: 14px 0 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--texto-suave);
+    }
+ 
+    /* ---------- Sobre mí ---------- */
+    .sobre-mi {
+      margin-top: 48px;
+    }
+ 
+    .sobre-mi p {
+      margin: 0 0 1.2em;
+    }
+ 
+    /* ---------- Abajo: contacto ---------- */
+    .contacto {
+      margin-top: 48px;
+      text-align: center;
+    }
+ 
+    .boton-contacto {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--degradado);
+      border-radius: 18px;           /* Apple Store */
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+ 
+    .boton-contacto:hover {
+      filter: brightness(1.1);
+    }
+ 
+    .boton-contacto:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 4px;
+    }
+ 
+    /* ---------- Celular ---------- */
+    @media (max-width: 480px) {
+      body {
+        font-size: 17px;
+      }
+      .pagina {
+        padding-top: 48px;
+      }
+    }
+  </style>
+</head>
+ 
+<body>
+  <main class="pagina">
+ 
+    <header class="encabezado">
+      <img class="foto" src="Melissa Insaurralde.jpg.png" alt="Foto de Melissa Insaurralde">
+      <h1 class="nombre">Melissa Insaurralde</h1>
+      <p class="ocupacion">Estudiante de Negocios Inteligentes e Innovación</p>
+    </header>
+ 
+    <section class="sobre-mi">
+      <p>
+        Hola, soy Melissa. Estudio Negocios Inteligentes e Innovación, una carrera
+        que junta la tecnología, los datos y la manera de dirigir una empresa.
+      </p>
+      <p>
+        Me interesa entender cómo las organizaciones pueden tomar mejores decisiones
+        usando información y herramientas digitales, y cómo una buena idea se
+        convierte en algo que funciona de verdad.
+      </p>
+      <p>
+        Estoy aprendiendo y armando mi camino. Si tenés una propuesta, una consulta
+        o simplemente querés conversar, escribime.
+      </p>
+    </section>
+ 
+    <footer class="contacto">
+      <a class="boton-contacto" href="mailto:melissainsaurraldet@gmail.com">melissainsaurraldet@gmail.com</a>
+    </footer>
+ 
+  </main>
+</body>
+</html>
